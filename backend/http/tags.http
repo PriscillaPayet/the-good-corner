@@ -1,0 +1,30 @@
+GET http://127.0.0.1:5000/tags
+
+###
+
+GET http://127.0.0.1:5000/tags/1
+
+### 
+
+POST http://127.0.0.1:5000/tags
+Content-Type: application/json
+
+{
+   "name": "promotion"
+   }
+
+
+###
+
+PUT http://127.0.0.1:5000/tags/2
+Content-Type: application/json
+
+{
+  "name": "fashion"
+  
+}
+
+###
+
+DELETE http://127.0.0.1:5000/tags/7
+

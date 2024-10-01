@@ -1,0 +1,30 @@
+GET http://127.0.0.1:5000/categories
+
+###
+
+GET http://127.0.0.1:5000/categories/7
+
+### 
+
+POST http://127.0.0.1:5000/categories
+Content-Type: application/json
+
+{
+   "name": "car"
+   }
+
+
+###
+
+PUT http://127.0.0.1:5000/categories/8
+Content-Type: application/json
+
+{
+  "name": "home"
+  
+}
+
+###
+
+DELETE http://127.0.0.1:5000/categories/7
+

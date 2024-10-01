@@ -1,0 +1,54 @@
+GET http://127.0.0.1:5000/ads
+
+###
+
+GET http://127.0.0.1:5000/ads/50
+
+###
+
+POST http://127.0.0.1:5000/ads
+Content-Type: application/json
+
+{
+   "title": "computer",
+    "description": "It's a big computer",
+    "owner": "teo@gmail.com",
+    "price": 100000,
+    "picture": "",
+    "location": "lyon",
+    "category" :  {"id": 5 },
+    "tags": [{ "id": 2 }, { "id": 1 }]
+    
+
+    
+}
+
+###
+
+PATCH http://127.0.0.1:5000/ads/50
+Content-Type: application/json
+
+{
+  "location": "annecy"
+}
+
+###
+
+PUT http://127.0.0.1:5000/ads/50
+Content-Type: application/json
+
+{
+  "title": "Bike to sell",
+  "owner": "bike@gmail.com",
+  "price": 200,
+  "picture": "https://images.lecho.be/view?iid=dc:113129565&context=ONLINE&ratio=16/9&width=640&u=1508242455000",
+  "location": "montmelian",
+  "category": {"id": 1 },
+  "tags": [{ "id": 2 }]
+  
+}
+
+###
+
+DELETE http://127.0.0.1:5000/ads/38
+
