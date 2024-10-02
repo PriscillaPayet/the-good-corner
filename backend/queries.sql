@@ -1,4 +1,5 @@
-
+-- DROP TABLE ad;
+-- DROP TABLE category;
 
 CREATE TABLE category ( 
     id INTEGER PRIMARY KEY AUTOINCREMENT ,
@@ -18,67 +19,49 @@ CREATE TABLE ad (
     FOREIGN KEY (category_id) REFERENCES category(id)
 );
 
-INSERT INTO category (name) VALUES ('clothing'), ('high-tech'), ('sport'), ('furniture'), ('other');
+INSERT INTO category (name) VALUES ('Clothing'), ('High-tech'), ('Sport'), ('Furniture'), ('Cars'), ('Decoration'), ('Toys');
 
 
 INSERT INTO ad (title, description, owner, price, picture, location, category_id, created_at) 
 VALUES 
-("Mug", "Green and very cute", "Bony", 2500, "https://mafabriqueperso.fr/img/scenes/ndkcf/544.jpg", "PARIS", 1, "2024-09-25"),
-("Mug", "Green and very cute", "Bony", 2500, "https://mafabriqueperso.fr/img/scenes/ndkcf/544.jpg", "PARIS", 2, "2024-07-10"),
-("T-Shirt", "White and stylish", "Alex", 1000, "https://mafabriqueperso.fr/img/scenes/ndkcf/545.jpg", "PARIS", 3, "2024-07-15"),
-("Backpack", "Spacious and durable", "Chris", 2500, "https://mafabriqueperso.fr/img/scenes/ndkcf/546.jpg", "PARIS", 4, "2024-08-01"),
-("Shoes", "Running shoes, size 42", "Marie", 4500, "https://mafabriqueperso.fr/img/scenes/ndkcf/547.jpg", "PARIS", 5, "2024-08-05"),
-("Watch", "Smartwatch with GPS", "Leo", 12000, "https://mafabriqueperso.fr/img/scenes/ndkcf/548.jpg", "PARIS", 5, "2024-08-12"),
-("Laptop", "14-inch laptop, 256GB SSD", "Eva", 50000, "https://mafabriqueperso.fr/img/scenes/ndkcf/549.jpg", "PARIS", 4, "2024-09-05"),
-("Headphones", "Wireless noise-cancelling", "John", 8000, "https://mafabriqueperso.fr/img/scenes/ndkcf/550.jpg", "PARIS", 3, "2024-09-10"),
-("Mug", "Simple and elegant", "Clara", 500, "https://mafabriqueperso.fr/img/scenes/ndkcf/558.jpg", "LYON", 2, "2024-07-02"),
-("Sofa", "Comfortable 3-seater", "Lucie", 20000, "https://mafabriqueperso.fr/img/scenes/ndkcf/559.jpg", "LYON", 1, "2024-07-18"),
-("Table", "Wooden coffee table", "Hugo", 5000, "https://mafabriqueperso.fr/img/scenes/ndkcf/560.jpg", "LYON", 3, "2024-08-06"),
-("Lamp", "Vintage floor lamp", "Marie", 7000, "https://mafabriqueperso.fr/img/scenes/ndkcf/561.jpg", "LYON", 3, "2024-08-10"),
-("Bicycle", "Mountain bike", "Louis", 30000, "https://mafabriqueperso.fr/img/scenes/ndkcf/562.jpg", "LYON", 3, "2024-08-22"),
-("Phone", "Smartphone, 128GB", "Sophie", 25000, "https://mafabriqueperso.fr/img/scenes/ndkcf/563.jpg", "LYON", 3, "2024-09-01"),
+
+("Mug", "Green and very cute", "Bony", 2500, "https://cdn.pixabay.com/photo/2016/11/29/12/46/coffee-1869599_640.jpg", "PARIS", 2, "2024-07-10"),
+("Backpack", "Spacious and durable", "Chris", 2500, "https://cdn.pixabay.com/photo/2019/07/15/10/57/backpack-4339090_640.jpg", "PARIS", 4, "2024-08-01"),
+("Shoes", "Running shoes, size 42", "Marie", 4500, "https://cdn.pixabay.com/photo/2018/08/31/09/35/baby-shoes-3644176_640.jpg", "PARIS", 5, "2024-08-05"),
+("Watch", "Smartwatch with GPS", "Leo", 12000, "https://cdn.pixabay.com/photo/2015/06/25/17/22/smart-watch-821559_640.jpg", "PARIS", 5, "2024-08-12"),
+("Laptop", "14-inch laptop, 256GB SSD", "Eva", 50000, "https://cdn.pixabay.com/photo/2020/10/21/18/07/laptop-5673901_640.jpg", "PARIS", 4, "2024-09-05"),
+("Sofa", "Comfortable 3-seater", "Lucie", 20000, "https://cdn.pixabay.com/photo/2020/02/14/09/01/lost-places-4847906_640.jpg", "LYON", 1, "2024-07-18"),
+("Table", "Wooden coffee table", "Hugo", 5000, "https://cdn.pixabay.com/photo/2019/05/28/00/15/indoors-4234071_640.jpg", "LYON", 3, "2024-08-06"),
+("Lamp", "Vintage floor lamp", "Marie", 7000, "https://cdn.pixabay.com/photo/2016/09/11/17/36/retro-lampshade-1662061_640.jpg", "LYON", 3, "2024-08-10"),
+("Bicycle", "Mountain bike", "Louis", 30000, "https://cdn.pixabay.com/photo/2017/06/18/17/51/stockholm-2416597_1280.jpg", "LYON", 3, "2024-08-22"),
+("Phone", "Smartphone, 128GB", "Sophie", 25000, "https://cdn.pixabay.com/photo/2020/01/27/15/30/background-4797499_640.jpg", "LYON", 3, "2024-09-01"),
 ("Speaker", "Bluetooth speaker", "Nathan", 4000, "https://mafabriqueperso.fr/img/scenes/ndkcf/564.jpg", "LYON", 3, "2024-09-08"),
-("Mug", "Handmade ceramic mug", "Pierre", 800, "https://mafabriqueperso.fr/img/scenes/ndkcf/551.jpg", "BORDEAUX", 4, "2024-07-03"),
 ("Hat", "Vintage style", "Paul", 1500, "https://mafabriqueperso.fr/img/scenes/ndkcf/552.jpg", "BORDEAUX", 4, "2024-07-11"),
-("Lamp", "Modern table lamp", "Elise", 3000, "https://mafabriqueperso.fr/img/scenes/ndkcf/553.jpg", "BORDEAUX", 4, "2024-08-03"),
-("Sofa", "Comfortable 3-seater", "Lucie", 20000, "https://mafabriqueperso.fr/img/scenes/ndkcf/554.jpg", "BORDEAUX", 4, "2024-08-14"),
-("Table", "Wooden coffee table", "Hugo", 5000, "https://mafabriqueperso.fr/img/scenes/ndkcf/555.jpg", "BORDEAUX", 4, "2024-08-20"),
-("Bicycle", "Used but functional bike", "Luc", 10000, "https://mafabriqueperso.fr/img/scenes/ndkcf/556.jpg", "BORDEAUX", 4, "2024-09-02"),
-("Camera", "Digital camera with lens", "Julien", 15000, "https://mafabriqueperso.fr/img/scenes/ndkcf/557.jpg", "BORDEAUX", 4, "2024-09-15");
+("Camera", "Digital camera with lens", "Julien", 15000, "https://cdn.pixabay.com/photo/2020/04/30/17/05/camera-5113699_640.jpg", "BORDEAUX", 4, "2024-09-15");
 
 
 
-INSERT INTO ad (title, description, owner, price, picture, location, category_id, created_at) 
-VALUES 
-("Jacket", "Leather jacket, black", "Sara", 10000, "https://mafabriqueperso.fr/img/scenes/ndkcf/565.jpg", "PARIS", 5, "2024-09-01"),
-("Watch", "Classic wristwatch, silver", "David", 7500, "https://mafabriqueperso.fr/img/scenes/ndkcf/566.jpg", "LYON", 5, "2024-09-01"),
-("Chair", "Ergonomic office chair", "Thomas", 6000, "https://mafabriqueperso.fr/img/scenes/ndkcf/567.jpg", "BORDEAUX", 5, "2024-09-01"),
-("Glasses", "Sunglasses, UV protection", "Amelie", 3000, "https://mafabriqueperso.fr/img/scenes/ndkcf/568.jpg", "PARIS", 5, "2024-09-01"),
-("Phone", "Unlocked smartphone", "Julie", 20000, "https://mafabriqueperso.fr/img/scenes/ndkcf/569.jpg", "LYON", 5, "2024-09-01"),
-("Bag", "Leather handbag, brown", "Nina", 12000, "https://mafabriqueperso.fr/img/scenes/ndkcf/570.jpg", "BORDEAUX", 5, "2024-09-01"),
-("Camera", "Action camera with accessories", "Pierre", 25000, "https://mafabriqueperso.fr/img/scenes/ndkcf/571.jpg", "PARIS", 2, "2024-09-01"),
-("Desk", "Modern wooden desk", "Lucas", 9000, "https://mafabriqueperso.fr/img/scenes/ndkcf/572.jpg", "LYON", 2, "2024-09-01"),
-("Bookshelf", "Tall wooden bookshelf", "Paul", 7000, "https://mafabriqueperso.fr/img/scenes/ndkcf/573.jpg", "BORDEAUX", 2, "2024-09-01"),
-("Shoes", "Casual sneakers, size 44", "Marie", 5000, "https://mafabriqueperso.fr/img/scenes/ndkcf/574.jpg", "PARIS", 2, "2024-09-01");
 
 
-SELECT * FROM ad;
+-- SELECT * FROM ad;
 
-SELECT * FROM ad WHERE location = "BORDEAUX";
+-- SELECT * FROM ad WHERE location = "BORDEAUX";
 
-UPDATE ad SET price = 0 WHERE created_at = "2024-09-01";
+-- UPDATE ad SET price = 0 WHERE created_at = "2024-09-01";
 
-DELETE FROM ad WHERE price >4000;
+-- DELETE FROM ad WHERE price >4000;
 
-SELECT AVG(price) FROM ad WHERE location = "PARIS";
+-- SELECT AVG(price) FROM ad WHERE location = "PARIS";
 
-SELECT * FROM ad WHERE category_id = 1;
+-- SELECT * FROM ad WHERE category_id = 1;
 
-SELECT ad.id, ad.title, ad.description, ad.category_id, category.name
-FROM ad
-INNER JOIN category 
-ON ad.category_id = category.id 
-WHERE category.name = "furniture" OR category.name = "other"
+-- SELECT ad.id, ad.title, ad.description, ad.category_id, category.name
+-- FROM ad
+-- INNER JOIN category 
+-- ON ad.category_id = category.id 
+-- WHERE category.name = "furniture" OR category.name = "other"
+
+
 
 
 

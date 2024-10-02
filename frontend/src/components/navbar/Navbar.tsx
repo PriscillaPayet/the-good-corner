@@ -1,74 +1,44 @@
-import '../app/App.css'
-import NavLink, { NavLinkProps } from '../navlink/Navlink'
+import axios from 'axios';
+import '../../index.css'
+import Category, { CategoryProps } from '../Category/Category'
+import { useEffect, useState } from 'react';
+
+
+
 
 function Navbar() {
 
-    const links: NavLinkProps[] = [
-        {
-            title: "Ameublement",
-        },
-        {
-            title: "Électroménager",
-        },
-        {
-            title: "Photographie",
-        },
-        {
-            title: "Téléphonie",
-        },
-        {
-            title: "Vélos",
-        },
-        {
-            title: "Véhicules",
-        },
-        {
-            title: "Sport",
-        },
-        {
-            title: "Habillement",
-        },
-        {
-            title: "Bébé",
-        },
-        {
-            title: "Outillage",
-        },
-        {
-            title: "Service",
-        },
-        {
-            title: "Vacances",
-        },
+    const [categories, setCategories]=useState<CategoryProps[]>([]);
 
-
-    ]
-
+    useEffect (()=> {
+        const fetchData = async () => {
+            try {
+                const result = await axios.get<CategoryProps[]>("http://127.0.0.1:5000/categories");
+                setCategories(result.data)
+            } catch (err) {
+                console.log("error", err)
+            }
+        };
+        fetchData();
+    }, [])
 
     return (
 
 
-
         <nav className="categories-navigation">
-            {links.map((link) => (
-                <NavLink
-                    title={link.title}
-                    key={link.title} />
+            
+            
+            {categories.map((category) => (
+                <div key={category.id}>
+                    <Category
+                        name={category.name}
+                        id={category.id} />
+                </div>
+                
+           
             ))}
-
-            {/* <a href="" className="category-navigation-link">Ameublement</a> •
-            <a href="" className="category-navigation-link">Électroménager</a> •
-            <a href="" className="category-navigation-link">Photographie</a> •
-            <a href="" className="category-navigation-link">Informatique</a> •
-            <a href="" className="category-navigation-link">Téléphonie </a> •
-            <a href="" className="category-navigation-link">Vélos</a> •
-            <a href="" className="category-navigation-link">Véhicules</a> •
-            <a href="" className="category-navigation-link">Sport</a> •
-            <a href="" className="category-navigation-link">Habillement</a> •
-            <a href="" className="category-navigation-link">Bébé</a> •
-            <a href="" className="category-navigation-link">Outillage</a> •
-            <a href="" className="category-navigation-link">Services </a> •
-            <a href="" className="category-navigation-link">Vacances</a> */}
+          
+       
         </nav>)
 
 };

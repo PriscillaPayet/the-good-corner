@@ -1,5 +1,6 @@
-import '../app/App.css'
-import Navbar from '../navbar/Navbar.tsx';
+import { Link } from 'react-router-dom';
+import '../../index.css'
+import Navbar from '../Navbar/Navbar.tsx';
 
 function Header() {
 
@@ -30,8 +31,8 @@ function Header() {
                         </svg>
                     </button>
                 </form>
-                <a href="/post-ad" className="button link-button"
-                ><span className="mobile-short-label">Publier</span><span className="desktop-long-label">Publier une annonce</span></a>
+                <Link to="/ad/new" className="button link-button"
+                ><span className="mobile-short-label">Publier</span><span className="desktop-long-label">Publier une annonce</span></Link>
             </div>
             <Navbar/>
         

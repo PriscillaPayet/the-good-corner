@@ -1,66 +1,56 @@
-import '../app/App.css'
-import AdCard, { AdCardProps } from '../adcard/AdCard';
+import { useEffect, useState } from 'react';
+import '../../index.css'
+import AdCard, { AdCardProps } from '../AdCard/AdCard';
+import axios from 'axios';
 
 function RecentAds() {
 
-    const ads:AdCardProps[] = [
-        {
-            title: "Table",
-            imgUrl:"../../public/table.webp",
-            price: 120 ,
-            link: "/ads/table",
-        },
-        {
-            title: "Dame-jeanne",
-            imgUrl:"../../public/dame-jeanne.webp",
-            price: 75 ,
-            link: "/ads/dame-jeanne",
-        }
+  
 
-    ]
+    const [ads, setAds]=useState<AdCardProps[]>([]);
+        
+
+    //total initialisé à 0
+    const [total, setTotal] = useState(0);
+    useEffect (()=> {
+        const fetchData = async () => {
+            try {
+                const result = await axios.get<AdCardProps[]>("http://127.0.0.1:5000/ads");
+                setAds(result.data)
+            } catch (err) {
+                console.log("error", err)
+            }
+        };
+        fetchData();
+    }, [])
+
+    // ajouter le prix au total
+    //cette fonction est défini dans le composant parent pour pouvoir être utilisé dans l'enfant et que l'enfant remonte l'information au clic
+    const addToTotal = (price: number) => {
+        // Utilisation de la fonction setTotal pour mettre à jour l'état 'total'.
+        setTotal((total) => total + price);
+    };
+ 
 
     return (
         <>
             <h2>Annonces récentes</h2>
+            <p>Prix total: {total} €</p>
             <section className="recent-ads">
-                { ads.map((ad)=> (
-                    <AdCard 
-                        title = {ad.title}
-                        imgUrl={ad.imgUrl}
-                        price={ad.price}
-                        link={ad.link}
-                        key={ad.title}
-                />
+                {ads.map((ad) => (
+                    <div key={ad.id}>
+                        <AdCard
+                            id={ad.id}                        
+                            title={ad.title}
+                            picture={ad.picture}
+                            price={ad.price}
+                            link={ad.link}
+                            // 'addToTotal' est passée en tant que prop ici, 
+                            // pour permettre au composant enfant 'AdCard' de l'utiliser.
+                            addToTotal={addToTotal} />
+                    </div>
                 ))}
-                
-                {/* <div className="ad-card-container">
-                    <a className="ad-card-link" href="/ads/vide-poche">
-                        <img className="ad-card-image" src="/images/vide-poche.webp" />
-                        <div className="ad-card-text">
-                            <div className="ad-card-title">Vide-poche</div>
-                            <div className="ad-card-price">4 €</div>
-                        </div>
-                    </a>
-                </div>
-                <div className="ad-card-container">
-                    <a className="ad-card-link" href="/ads/vaisselier">
-                        <img className="ad-card-image" src="/images/vaisselier.webp" />
-                        <div className="ad-card-text">
-                            <div className="ad-card-title">Vaisselier</div>
-                            <div className="ad-card-price">900 €</div>
-                        </div>
-                    </a>
-                </div>
-                <div className="ad-card-container">
-                    <a className="ad-card-link" href="/ads/bougie">
-                        <img className="ad-card-image" src="/images/bougie.webp" />
-                        <div className="ad-card-text">
-                            <div className="ad-card-title">Bougie</div>
-                            <div className="ad-card-price">8 €</div>
-                        </div>
-                    </a>
-                </div> */}
-                
+
             </section>
         </>
     )
