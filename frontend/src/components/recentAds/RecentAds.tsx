@@ -44,9 +44,7 @@ function RecentAds() {
                             title={ad.title}
                             picture={ad.picture}
                             price={ad.price}
-                            link={ad.link}
-                            // 'addToTotal' est passée en tant que prop ici, 
-                            // pour permettre au composant enfant 'AdCard' de l'utiliser.
+                            // 'addToTotal' est passée en tant que prop ici, pour permettre au composant enfant 'AdCard' de l'utiliser.
                             addToTotal={addToTotal} />
                     </div>
                 ))}

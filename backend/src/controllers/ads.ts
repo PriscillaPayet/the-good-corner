@@ -7,12 +7,14 @@ export const AdsRouter = express.Router();
 
 // Récupération de toutes les annonces
 AdsRouter.get("/", async (req, res) => {
-    const ads = await Ad.find({
+    const ads = await Ad.find(
+      {
       relations: {
         category: true,
         tags: true
       },
-    });
+    }
+  );
     res.json(ads);
   });
   
@@ -24,7 +26,9 @@ AdsRouter.get("/", async (req, res) => {
       // Recherche de l'annonce par ID avec ses relations
       const ad = await Ad.findOne({
         where: { id },
-        relations: ['category', 'tags'], // Utilisation correcte des relations
+        relations: // Utilisation des relations
+            {category : true, 
+             tags: true} 
       });
   
       if (ad !== null) {

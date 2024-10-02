@@ -26,5 +26,5 @@ Content-Type: application/json
 
 ###
 
-DELETE http://127.0.0.1:5000/tags/7
+DELETE http://127.0.0.1:5000/tags/16
 

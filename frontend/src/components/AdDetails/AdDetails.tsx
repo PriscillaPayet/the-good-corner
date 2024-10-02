@@ -45,7 +45,7 @@ function AdDetails(){
                 <img src={ad.picture} alt={ad.title} className='ad-details-image'/></div>
             <div className='ad-details-info'>
                 <p >{ad.description}</p>
-             <p className='ad-details-price'>{ad.price}</p>
+             <p className='ad-details-price'>{(ad.price/100).toFixed(2) }€</p>
              </div>
              </>
         )

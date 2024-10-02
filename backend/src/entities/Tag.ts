@@ -15,7 +15,6 @@ export class Tag extends BaseEntity {
 
       
     @ManyToMany ( () => Ad, (ad) => ad.tags)
-    @JoinTable ()
     ads!: Ad[] ;
 
  

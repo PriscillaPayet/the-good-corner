@@ -1,30 +1,27 @@
-import { BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Length, IsEmail, IsDate, IsInt } from "class-validator";
+// Ad.ts
+import { BaseEntity, BeforeInsert, Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Length, IsEmail, IsInt } from "class-validator";
 import { Category } from "./Category";
-import {Tag } from "./Tag";
-
+import { Tag } from "./Tag";
 
 @Entity()
 export class Ad extends BaseEntity {
-
-    //l'opérateur "!" permet d'assurer à Typescript que l'initialisation que la propriété est gérée 
-
     @PrimaryGeneratedColumn()
     id!: number;
 
     @Column()
-    @Length(3,50, {message: "entre 3 et 50 caractères"})
+    @Length(3, 50, { message: "entre 3 et 50 caractères" })
     title!: string;
 
     @Column()
-    @Length(10,100, {message: "entre 10 et 100 caractères"})
+    @Length(10, 100, { message: "entre 10 et 100 caractères" })
     description!: string;
 
     @Column()
     @IsEmail()
     owner!: string;
 
-    @Column({nullable: true})
+    @Column({ nullable: true })
     @IsInt()
     price!: number;
 
@@ -32,7 +29,7 @@ export class Ad extends BaseEntity {
     picture!: string;
 
     @Column()
-    @Length(3,50, {message: "entre 3 et 50 caractères"})
+    @Length(3, 50, { message: "entre 3 et 50 caractères" })
     location!: string;
 
     @Column()
@@ -40,18 +37,15 @@ export class Ad extends BaseEntity {
 
     @BeforeInsert()
     private setCreatedAt() {
-      this.created_at = new Date();
+        this.created_at = new Date();
     }
 
-
-    // @BeforeUpdate()  // Utilisation de BeforeUpdate pour set updated_at
-    // updateUpdatedAt() {
-    //     this.updated_at = new Date();
-    // }
-
-    @ManyToOne(() => Category, (category) => category.ads, { nullable: true })
-    category!: Category;
+      // Relation ManyToOne avec Category
+      @ManyToOne(() => Category, (category) => category.ads, { nullable: true, onDelete: 'SET NULL' }) // Gérer la suppression
+      @JoinColumn({ name: 'category_id' }) // Nom explicite de la colonne
+      category!: Category;
 
     @ManyToMany(() => Tag, (tag) => tag.ads)
+    @JoinTable()
     tags!: Tag[];
 }

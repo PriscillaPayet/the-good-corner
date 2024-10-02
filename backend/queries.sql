@@ -1,5 +1,5 @@
--- DROP TABLE ad;
--- DROP TABLE category;
+--  DROP TABLE ad;
+--  DROP TABLE category;
 
 CREATE TABLE category ( 
     id INTEGER PRIMARY KEY AUTOINCREMENT ,
@@ -43,7 +43,7 @@ VALUES
 
 
 
--- SELECT * FROM ad;
+SELECT * FROM ad;
 
 -- SELECT * FROM ad WHERE location = "BORDEAUX";
 
@@ -55,15 +55,19 @@ VALUES
 
 -- SELECT * FROM ad WHERE category_id = 1;
 
--- SELECT ad.id, ad.title, ad.description, ad.category_id, category.name
+--  SELECT ad.id, ad.title, ad.description, ad.category_id, category.name
+--  FROM ad
+--  INNER JOIN category 
+--  ON ad.category_id = category.id 
+--  WHERE category.name = "furniture" OR category.name = "other"
+
+-- SELECT ad.id, ad.title, ad.description, ad.owner, ad.price, ad.picture, ad.location, ad.created_at, category.name AS category_name
 -- FROM ad
--- INNER JOIN category 
--- ON ad.category_id = category.id 
--- WHERE category.name = "furniture" OR category.name = "other"
+-- INNER JOIN category ON ad.category_id = category.id;
 
 
 
-
+SELECT * FROM ad WHERE categoryId IS NULL;
 
 
 

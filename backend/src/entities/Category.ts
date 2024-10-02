@@ -1,8 +1,6 @@
-import { BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Length } from "class-validator";
 import { Ad } from "./Ad";
-
-
 
 @Entity()
 export class Category extends BaseEntity {
@@ -10,16 +8,11 @@ export class Category extends BaseEntity {
     id!: number;
 
     @Column()
-    @Length(3,50, {message: "entre 3 et 50 caractères"})
+    @Length(3, 50, { message: "entre 3 et 50 caractères" })
     name!: string;
 
-   
-
-
-    @OneToMany ( () => Ad, (ad) => ad.category, {
-         onDelete: 'SET NULL' // Mettre à NULL les catégories des annonces lors de la suppression de la catégorie
+    @OneToMany(() => Ad, (ad) => ad.category, {
+        onDelete: 'SET NULL' // Mettre à NULL les catégories des annonces lors de la suppression de la catégorie
     })
-    ads!: Ad[]
-
- 
+    ads!: Ad[];
 }
