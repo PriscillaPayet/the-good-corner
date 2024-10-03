@@ -2,13 +2,17 @@ import axios from 'axios';
 import '../../index.css'
 import Category, { CategoryProps } from '../Category/Category'
 import { useEffect, useState } from 'react';
-
+import { AdProps } from '../AdDetails/AdDetails';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Navbar() {
+    
 
     const [categories, setCategories]=useState<CategoryProps[]>([]);
+    const navigate = useNavigate(); // Utilisez le hook useNavigate
+   
 
     useEffect (()=> {
         const fetchData = async () => {
@@ -22,6 +26,22 @@ function Navbar() {
         fetchData();
     }, [])
 
+    const handleClick = async (id: number, name:string): Promise<void> =>{
+
+        try {
+            //je récupère l'id cliqué
+            console.log(id)
+            const result = await axios.get<AdProps[]>(`http://127.0.0.1:5000/ads/category/${id}`);
+            console.log(result.data)
+            navigate(`/ads/category/${id}/${name}`);
+        }catch (err){
+            console.log(err)
+
+        }
+        
+    
+    }
+
     return (
 
 
@@ -29,10 +49,11 @@ function Navbar() {
             
             
             {categories.map((category) => (
-                <div key={category.id}>
+                <div key={category.id} onClick={() => handleClick(category.id, category.name)}>
                     <Category
                         name={category.name}
-                        id={category.id} />
+                        id={category.id}
+                         />
                 </div>
                 
            

@@ -14,11 +14,14 @@ export class Ad extends BaseEntity {
     title!: string;
 
     @Column()
-    @Length(10, 100, { message: "entre 10 et 100 caractères" })
+    @Length(3, 100, { message: "entre 3 et 100 caractères" })
     description!: string;
 
     @Column()
     @IsEmail()
+    ownerEmail!: string;
+
+    @Column()
     owner!: string;
 
     @Column({ nullable: true })
@@ -40,10 +43,10 @@ export class Ad extends BaseEntity {
         this.created_at = new Date();
     }
 
-      // Relation ManyToOne avec Category
-      @ManyToOne(() => Category, (category) => category.ads, { nullable: true, onDelete: 'SET NULL' }) // Gérer la suppression
-      @JoinColumn({ name: 'category_id' }) // Nom explicite de la colonne
-      category!: Category;
+    // Relation ManyToOne avec Category
+    @ManyToOne(() => Category, (category) => category.ads, { nullable: true, onDelete: 'SET NULL' }) // Gérer la suppression
+    @JoinColumn({ name: 'category_id' }) // Nom explicite de la colonne
+    category!: Category;
 
     @ManyToMany(() => Tag, (tag) => tag.ads)
     @JoinTable()

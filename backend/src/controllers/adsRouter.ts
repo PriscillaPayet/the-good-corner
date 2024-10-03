@@ -132,3 +132,16 @@ AdsRouter.patch("/:id", async (req, res) => {
     res.status(500).send();
   }
 });
+
+// Récupération des annonces par catégorie
+AdsRouter.get("/category/:id", async (req, res) => {
+  try {
+    // je récupère l'identifiant de la catégorie depuis les paramètres de l'URL
+      const categoryId = Number(req.params.id);
+      // je recherche les annonces associées à la catégorie dans la base de données
+      const ads = await Ad.find({ where: { category: { id: categoryId } } }); 
+      res.json(ads);
+  } catch (error) {
+      res.status(500).send("Erreur lors de la récupération des annonces");
+  }
+});

@@ -6,6 +6,10 @@ GET http://127.0.0.1:5000/ads/50
 
 ###
 
+GET http://127.0.0.1:5000/ads/category/5
+
+###
+
 POST http://127.0.0.1:5000/ads
 Content-Type: application/json
 

@@ -1,9 +1,9 @@
 import express from 'express';
 import "reflect-metadata";
 import { datasource } from './datasource';
-import { CategoriesRouter } from './controllers/categories';
-import { AdsRouter } from './controllers/ads';
-import { TagsRouter } from './controllers/tags';
+import { CategoriesRouter } from './controllers/categoriesRouter';
+import { AdsRouter } from './controllers/adsRouter';
+import { TagsRouter } from './controllers/tagsRouter';
 import cors from "cors";
 
 
@@ -12,7 +12,7 @@ const app = express();
 // Configuration des options CORS
 const corsOptions = {
   origin: "*", // Remplacez par le domaine autorisé si nécessaire
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 

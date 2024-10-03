@@ -13,7 +13,8 @@ export type AdProps = {
     ownerEmail: string;
     picture: string;
     price: number;
-    location: string
+    location: string;
+    category_id: number
 
 };
 
