@@ -11,8 +11,7 @@ function Navbar() {
     
 
     const [categories, setCategories]=useState<CategoryProps[]>([]);
-    const navigate = useNavigate(); // Utilisez le hook useNavigate
-   
+    const navigate = useNavigate(); 
 
     useEffect (()=> {
         const fetchData = async () => {

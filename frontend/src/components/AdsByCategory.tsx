@@ -25,7 +25,7 @@ function AdsByCategory () {
 
     return(
         <>
-            <h2>Annonces de la catégorie {name}</h2>
+            <h2 className="ad-card-detail-title">Annonces de la catégorie {name}</h2>
 
             <section className="recent-ads">
                 {ads.map((ad) => (
@@ -34,7 +34,7 @@ function AdsByCategory () {
                             id={ad.id}
                             title={ad.title}
                             picture={ad.picture}
-                            price={ad.price} addToTotal={function (price: number): void {
+                            price={ad.price} addToTotal={function (): void {
                                 throw new Error("Function not implemented.");
                             } }                           />
                     </div>

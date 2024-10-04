@@ -55,8 +55,8 @@ function AdDetails(){
 
      <> 
         {ad ?(
-            <div>
-                <h2 className='ad-card-title'>{ad.title}</h2>
+            <div className="ad-card-details-container">
+                <h2 className='ad-card-detail-title'>{ad.title}</h2>
                 <section className="ad-details">
                     <div className='ad-details-image-container'>
                         <img src={ad.picture} alt={ad.title} className='ad-details-image'/>

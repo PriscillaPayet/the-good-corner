@@ -25,7 +25,7 @@ function RecentAds() {
     }, [])
 
     // ajouter le prix au total
-    //cette fonction est défini dans le composant parent pour pouvoir être utilisé dans l'enfant et que l'enfant remonte l'information au clic
+    //cette fonction est défini dans le composant parent pour pouvoir être utilisée dans l'enfant et que l'enfant remonte l'information au clic
     const addToTotal = (price: number) => {
         // Utilisation de la fonction setTotal pour mettre à jour l'état 'total'.
         setTotal((total) => total + price);
