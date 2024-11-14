@@ -1,35 +1,31 @@
-import express from 'express';
 import "reflect-metadata";
 import { datasource } from './datasource';
-import { CategoriesRouter } from './controllers/categoriesRouter';
-import { AdsRouter } from './controllers/adsRouter';
-import { TagsRouter } from './controllers/tagsRouter';
-import cors from "cors";
+import { CategoriesResolver } from './resolvers/Categories';
+import { buildSchema } from 'type-graphql';
+import {ApolloServer} from "@apollo/server"
+import {startStandaloneServer } from "@apollo/server/standalone"
+import { AdsResolver } from "./resolvers/Ads";
+import { TagsResolver } from "./resolvers/Tags";
 
 
-const app = express();
-
-// Configuration des options CORS
-const corsOptions = {
-  origin: "*", // Remplacez par le domaine autorisé si nécessaire
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-};
-
-app.use(express.json());
-app.use(cors(corsOptions));
-app.use("/categories", CategoriesRouter);
-app.use("/ads", AdsRouter);
-app.use("/tags", TagsRouter);
 
 
 // Démarrage du serveur une fois que la datasource est connectée
 async function initialize() {
   await datasource.initialize()
   console.log("Datasource connected")
-  app.listen(5000, () => {
+
+  const schema = await buildSchema({
+    resolvers: [CategoriesResolver, AdsResolver, TagsResolver]
+  })
+
+  const server = new ApolloServer ({schema});
+
+  const { url } = await startStandaloneServer(server, {
+    listen: { port: 5000 }
+  }); 
+  
   console.log("Server is running on port 5000 🚀");
-});
-};
+}
 
 initialize();
