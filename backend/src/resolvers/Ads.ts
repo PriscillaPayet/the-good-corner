@@ -3,6 +3,7 @@ import { In } from "typeorm";
 import { Ad, AdCreateInput, AdUpdateInput } from "../entities/Ad";
 import { Category } from "../entities/Category";
 import { Tag } from "../entities/Tag";
+import { validate } from "class-validator";
 
 @Resolver()
 export class AdsResolver {
@@ -33,6 +34,10 @@ export class AdsResolver {
             const tags = await Tag.findBy({ id: In(data.tags.map(tag => tag.id)) });
             newAd.tags = tags;
         }
+        const errors = await validate(newAd)
+        if (errors.length > 0) {
+            throw new Error("Les données de la catégorie ne sont pas valides");
+        }
 
         await newAd.save();
         return newAd;
@@ -56,6 +61,10 @@ export class AdsResolver {
         if (data.tags) {
             const tags = await Tag.findBy({ id: In(data.tags.map(tag => tag.id)) });
             ad.tags = tags;
+        }
+        const errors = await validate(ad)
+        if (errors.length > 0) {
+            throw new Error("Les données de la catégorie ne sont pas valides");
         }
 
         await ad.save();
