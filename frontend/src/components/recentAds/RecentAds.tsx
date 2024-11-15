@@ -1,28 +1,25 @@
 import { useEffect, useState } from 'react';
 import '../../index.css'
 import AdCard, { AdCardProps } from '../AdCard/AdCard';
-import axios from 'axios';
+import {  useQuery } from '@apollo/client';
+import { GET_ADSCARDS } from '../../api/graphgl';
 
 function RecentAds() {
-
-  
-
     const [ads, setAds]=useState<AdCardProps[]>([]);
         
 
     //total initialisé à 0
     const [total, setTotal] = useState(0);
-    useEffect (()=> {
-        const fetchData = async () => {
-            try {
-                const result = await axios.get<AdCardProps[]>("http://127.0.0.1:5000/ads");
-                setAds(result.data)
-            } catch (err) {
-                console.log("error", err)
-            }
-        };
-        fetchData();
-    }, [])
+    const { loading, error, data } = useQuery(GET_ADSCARDS);
+
+
+    // Met à jour l'état 'ads' lorsque les données sont disponibles
+    useEffect(() => {
+        if (data && data.ads) {
+            setAds(data.ads);
+        }
+    }, [data]);
+
 
     // ajouter le prix au total
     //cette fonction est défini dans le composant parent pour pouvoir être utilisée dans l'enfant et que l'enfant remonte l'information au clic
@@ -30,6 +27,10 @@ function RecentAds() {
         // Utilisation de la fonction setTotal pour mettre à jour l'état 'total'.
         setTotal((total) => total + price);
     };
+
+    // Gestion du chargement et des erreurs
+    if (loading) return <p>Chargement des annonces...</p>;
+    if (error) return <p>Erreur : {error.message}</p>;
  
 
     return (

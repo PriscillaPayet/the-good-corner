@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AdProps } from "./AdDetails/AdDetails";
-import axios from "axios";
 import AdCard from "./AdCard/AdCard";
+import { GET_CATEGORYADS } from "../api/graphgl";
+import { useQuery } from "@apollo/client";
 
 
 function AdsByCategory () {
@@ -10,18 +11,18 @@ function AdsByCategory () {
     const { id, name } = useParams<{ id: string; name:string }>()
     const [ads, setAds] = useState<AdProps[]>([]);
 
+    const { loading, error, data } = useQuery(GET_CATEGORYADS, {
+      variables: { categoryId: id}
+    });
+
     useEffect(() => {
-        const fetchAds = async () => {
-          try {
-            const result = await axios.get(`http://127.0.0.1:5000/ads/category/${id}`);
-            setAds(result.data);
-          } catch (err) {
-            console.log("Error fetching ads", err);
-          }
-        };
-    
-        fetchAds();
-      }, [id]);
+      if (data && data.category && data.category.ads) {
+        setAds(data.category.ads); // Met à jour les annonces dans l'état
+    }
+}, [data]);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
 
     return(
         <>

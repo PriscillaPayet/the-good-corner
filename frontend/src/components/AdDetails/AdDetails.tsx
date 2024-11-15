@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import '../../index.css'
-
 import { Link, useNavigate, useParams } from "react-router-dom";
-import axios from 'axios';
+import { useQuery } from '@apollo/client';
+import { GET_AD } from '../../api/graphgl';
 
 export type AdProps = {
     created_at: Date;
@@ -24,32 +24,32 @@ function AdDetails(){
 
     const {id} = useParams();
     const [ad, setAd] = useState<AdProps>();
+
+    const { loading, error, data } = useQuery(GET_AD, {
+        variables: { adId: id}
+      });
     const navigate = useNavigate(); // Hook pour la redirection
 
     useEffect (()=> {
-        const fetchData = async () => {
-            try {
-                const result = await axios.get<AdProps>(`http://127.0.0.1:5000/ads/${id}`);
-               console.log(result); 
-               setAd(result.data);
-            } catch (err) {
-                console.log("error", err)
-            }
-        };
-        fetchData();
-    }, [id])
-
-    const handleDelete = async (id: number) => {
-        try {
-            const result = await axios.delete(`http://127.0.0.1:5000/ads/${id}`);
-            console.log("deleted",result);
-            alert("Annonce supprimée");
-            navigate("/");
-
-        } catch (err) {
-            console.log (err)
+        if (data && data.ad ) {
+            setAd(data.ad); // Met à jour les annonces dans l'état
         }
-    }
+    }, [data]);
+    
+        if (loading) return <div>Loading...</div>;
+        if (error) return <div>Error: {error.message}</div>;
+
+    // const handleDelete = async (id: number) => {
+    //     try {
+    //         const result = await axios.delete(`http://127.0.0.1:5000/ads/${id}`);
+    //         console.log("deleted",result);
+    //         alert("Annonce supprimée");
+    //         navigate("/");
+
+    //     } catch (err) {
+    //         console.log (err)
+    //     }
+    // }
 
     return (
 
@@ -75,9 +75,9 @@ function AdDetails(){
                         <Link to={`mailto:${ad.ownerEmail}`} className="button button-primary link-button">
                             Envoyer un email
                         </Link>
-                        <button onClick={()=>handleDelete(ad.id)} className="button button-primary link-button">
+                        {/* <button onClick={()=>handleDelete(ad.id)} className="button button-primary link-button">
                             Supprimer cette annonce
-                    </button>
+                    </button> */}
                     </div>
                     
                     
