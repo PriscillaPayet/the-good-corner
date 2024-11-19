@@ -60,8 +60,8 @@ function AdDetails() {
 
     return (
         <div className="ad-card-details-container">
-            <h2 className="ad-card-detail-title">{ad.title}</h2>
-            <h3>{ad.tags && ad.tags.length > 0 ? ad.tags.map(tag => tag.name).join(", ") : 'Pas de tags'}</h3>
+            <h2 className="ad-card-detail-title">{ad.title} </h2>
+            <h3 className='tags'>{ad.tags && ad.tags.length > 0 ? ad.tags.map(tag => `#${tag.name}`).join("  ") : 'Pas de tags'}</h3>
             <section className="ad-details">
                 <div className="ad-details-image-container">
                     <img src={ad.picture || '/default-image.png'} alt={ad.title || 'Annonce'} className="ad-details-image" />
