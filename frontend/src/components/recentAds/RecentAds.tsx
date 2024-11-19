@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import '../../index.css'
 import AdCard, { AdCardProps } from '../AdCard/AdCard';
 import {  useQuery } from '@apollo/client';
-import { GET_ADSCARDS } from '../../api/graphgl';
+import { GET_ADSCARDS } from '../../api/graphql_queries';
 
 function RecentAds() {
     const [ads, setAds]=useState<AdCardProps[]>([]);
         
 
     //total initialisé à 0
-    const [total, setTotal] = useState(0);
-    const { loading, error, data } = useQuery(GET_ADSCARDS);
+    // const [total, setTotal] = useState(0);
+    const { loading, error, data } = useQuery(GET_ADSCARDS, { fetchPolicy: 'cache-and-network'});
 
 
     // Met à jour l'état 'ads' lorsque les données sont disponibles
@@ -23,10 +23,10 @@ function RecentAds() {
 
     // ajouter le prix au total
     //cette fonction est défini dans le composant parent pour pouvoir être utilisée dans l'enfant et que l'enfant remonte l'information au clic
-    const addToTotal = (price: number) => {
-        // Utilisation de la fonction setTotal pour mettre à jour l'état 'total'.
-        setTotal((total) => total + price);
-    };
+    // const addToTotal = (price: number) => {
+    //     // Utilisation de la fonction setTotal pour mettre à jour l'état 'total'.
+    //     setTotal(((total) => ((total ) + price)));
+    // };
 
     // Gestion du chargement et des erreurs
     if (loading) return <p>Chargement des annonces...</p>;
@@ -36,7 +36,7 @@ function RecentAds() {
     return (
         <>
             <h2>Annonces récentes</h2>
-            <p>Prix total: {total} €</p>
+            {/* <p>Prix total: {total} €</p> */}
             <section className="recent-ads">
                 {ads.map((ad) => (
                     <div key={ad.id}>
@@ -46,7 +46,8 @@ function RecentAds() {
                             picture={ad.picture}
                             price={ad.price}
                             // 'addToTotal' est passée en tant que prop ici, pour permettre au composant enfant 'AdCard' de l'utiliser.
-                            addToTotal={addToTotal} />
+                            // 
+                             />
                     </div>
                 ))}
 

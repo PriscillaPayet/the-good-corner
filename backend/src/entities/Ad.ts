@@ -25,7 +25,7 @@ export class Ad extends BaseEntity {
 
     @Column()
     @Field()
-    @IsEmail()
+    @IsEmail({}, { message: 'L\'adresse email fournie est invalide.' })
     ownerEmail!: string;
 
     @Column()
@@ -47,6 +47,7 @@ export class Ad extends BaseEntity {
     location!: string;
 
     @Column()
+    @Field()
     created_at!: Date;
     
 

@@ -3,7 +3,6 @@
 }
  
 body {
-  margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: #f5f5f5;
@@ -11,6 +10,10 @@ body {
 
 h1 {
   margin: 0;
+}
+
+h2 {
+  text-align: center;
 }
  
 .header {
@@ -31,6 +34,8 @@ h1 {
   color: #ffa41b;
 }
  
+
+
 .categories-navigation {
   font-size: 12px;
   font-weight: bold;
@@ -38,12 +43,18 @@ h1 {
   padding: 16px 10px 6px;
   white-space: nowrap;
   overflow-x: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px; /* Espacement entre les catégories */
 }
  
 .category-navigation-link {
   text-decoration: unset;
   color: inherit;
 }
+
+
  
 .button {
   min-width: 40px;
@@ -233,8 +244,74 @@ h1 {
 }
  
 .separator {
-  width: 100%;
-  height: 1px;
-  background-color: lightgray;
-  border: none;
+  color: #888; /* Couleur des points */
+  font-size: 16px; /* Taille des points */
+  margin: 0 8px; /* Espacement autour des points */
+  line-height: 0; /* Pour s'assurer que les points sont centrés verticalement */
 }
+
+.label{
+  display: flex;
+  flex-direction: column;
+  gap: 5px
+
+}
+
+.select-label{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  :focus{
+    outline: none;
+    border-color: #ff8c00;
+    box-shadow: 0 0 5px rgba(255, 164, 27, 0.5);
+   }
+
+}
+
+.select-field {
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  padding: 8px;
+  border: 2px solid #ffa41b;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #333;
+  cursor: pointer;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px; 
+ 
+ 
+}
+
+.checkbox-input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkbox-label {
+  font-size: 14px;
+  cursor: pointer; /* Rendre le label cliquable */
+  color: #333;
+}
+
+.new-category-container{
+  border: 1px solid #ffa41b;
+  padding: 16px;
+
+}
+
+.form-container{
+  background-color: white;
+  border-radius: 10px;
+  margin: 150px;
+  padding: 5px 25px 15px;
+}
+

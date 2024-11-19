@@ -9,8 +9,8 @@ export type AdCardProps = {
 
 }
 //le composant enfant prend recupère les props passées par son parent RencentAds, dont la fonction callBack addTototal
-//on utilise un type intersection = plusieurs types ensemble: (AdCardProps & { addToTotal: (price: number) => void }) pour s'assurer que la fonction addToTotal est bien passée en prop.
-function AdCard({ title, picture, price, id, addToTotal }: AdCardProps & { addToTotal: (price: number) => void }) {
+//on utilise un type intersection = plusieurs types ensemble: (AdCardProps & { addToTotal: (price: number) => void }) pour s'assurer que la fonction addToTotal est bien passée en prop, je retire cette partie car plus besoin du addTotalPrice pr le moment à priori...
+function AdCard({ title, picture, price, id }: AdCardProps ) {
 
     return (
         <div className="ad-card-container" key={id}>
@@ -23,10 +23,10 @@ function AdCard({ title, picture, price, id, addToTotal }: AdCardProps & { addTo
                     </div>
                 </div>
             </Link>
-            <button 
+            {/* <button 
                 className="button"
                 onClick={() => addToTotal(price)}
-                > Ajouter le prix au total</button>
+                > Ajouter au prix au total</button> */}
         </div>
     )
 

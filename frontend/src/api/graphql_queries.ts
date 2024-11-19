@@ -13,8 +13,29 @@ export const GET_ADSCARDS = gql`
     }
 `;
 
-export const GET_NAVCATEGORIES = gql `
-    query NavCategories {
+export const GET_AD = gql`
+    query Ad($adId: ID!) {
+        ad(id: $adId) {
+            title
+            picture
+            price
+            owner
+            created_at
+            ownerEmail
+            description
+            tags {
+             id 
+             name
+             }
+             category{
+             id
+             name}
+        }
+    }
+`;
+
+export const GET_CATEGORIES = gql `
+    query Categories {
         categories {
             id
             name
@@ -35,7 +56,7 @@ export const GET_CATEGORYADS = gql `
     query Ads($categoryId: ID!) {
         category(id: $categoryId) {
             ads {
-            id
+                    id
                     title
                     description
                     price
@@ -45,17 +66,12 @@ export const GET_CATEGORYADS = gql `
     }
 `;
 
-
-export const GET_AD = gql`
-    query Ad($adId: ID!) {
-        ad(id: $adId) {
-            title
-            picture
-            price
-            owner
-            created_at
-            ownerEmail
-            description
+export const GET_TAGS = gql `
+    query Tags {
+        tags {
+            name
+            id
         }
     }
 `;
+
