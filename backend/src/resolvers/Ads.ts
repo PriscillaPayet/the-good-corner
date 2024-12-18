@@ -44,7 +44,7 @@ export class AdsResolver {
     ): Promise<Ad | null> {
       const ad = await Ad.findOne({
         where: { id },
-        relations: { category: true, tags: true }  // Assurez-vous que les tags sont bien chargés
+        relations: { category: true, tags: true }  
       });
     
       if (ad !== null) {
@@ -65,6 +65,8 @@ export class AdsResolver {
 
         
         merge(ad, data)
+        
+   
   
         // bug → ad.tags
         // { id: 1 } → unicity constraint

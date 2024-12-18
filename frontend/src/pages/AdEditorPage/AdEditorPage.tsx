@@ -35,6 +35,8 @@ export function AdEditorPage() {
 
   useEffect(() => {
     if (ad) {
+      console.log("Données de l'annonce :", ad);  // Vérifie la structure de `ad`
+    console.log("Location de l'annonce :", ad.location); // Vérifie si `location` est bien présente
       setTitle(ad.title || "");
       setDescription(ad.description || "");
       setPrice(ad.price || 0);

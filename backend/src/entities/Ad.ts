@@ -43,7 +43,7 @@ export class Ad extends BaseEntity {
 
     @Column()
     @Field()
-    @Length(3, 50, { message: "entre 3 et 50 caractères" })
+    @Length(2, 50, { message: "entre 3 et 50 caractères" })
     location!: string;
 
     @Column()
@@ -92,7 +92,7 @@ export class AdCreateInput {
     picture!: string;
    
     @Field()
-    @Length(3, 50, { message: "entre 3 et 50 caractères" })
+    @Length(2, 50, { message: "entre 3 et 50 caractères" })
     location!: string;
 
     @Field(() => IdInput, {nullable: true})
@@ -127,7 +127,7 @@ export class AdUpdateInput {
     picture!: string;
    
     @Field({nullable: true})
-    @Length(3, 50, { message: "entre 3 et 50 caractères" })
+    @Length(2, 50, { message: "entre 3 et 50 caractères" })
     location!: string;
 
     @Field(() => IdInput, {nullable: true})

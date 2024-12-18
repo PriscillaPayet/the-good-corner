@@ -22,6 +22,7 @@ export const GET_AD = gql`
             owner
             created_at
             ownerEmail
+            location
             description
             tags {
              id 
