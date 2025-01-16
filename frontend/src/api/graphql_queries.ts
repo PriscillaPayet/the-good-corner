@@ -21,7 +21,7 @@ export const GET_AD = gql`
             price
             owner
             created_at
-            ownerEmail
+            owner_email
             location
             description
             tags {
@@ -76,3 +76,12 @@ export const GET_TAGS = gql `
     }
 `;
 
+export const queryWhoami = gql`
+  query Whoami {
+    whoami {
+      id
+      email
+      roles
+    }
+  }
+`;

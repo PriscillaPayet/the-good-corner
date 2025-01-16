@@ -10,7 +10,7 @@ export type TagType = {
     picture: string;
     description: string;
     owner: string;
-    ownerEmail: string;
+    owner_email: string;
     location: string;
     category?: CategoryType;
     tags: TagType[];

@@ -28,7 +28,7 @@ export function AdEditorPage() {
   const [price, setPrice] = useState<number>(0);
   const [location, setLocation] = useState("");
   const [picture, setPicture] = useState("");
-  const [ownerEmail, setOwnerEmail] = useState("");
+  const [owner_email, setOwner_email] = useState("");
   const [owner, setOwner] = useState("");
   const [categoryId, setCategoryId] = useState<number | null>();
   const [tagsIds, setTagsIds] = useState<number[]>([]);
@@ -43,7 +43,7 @@ export function AdEditorPage() {
       setLocation(ad.location || "");
       setPicture(ad.picture || "");
       setOwner(ad.owner|| "");
-      setOwnerEmail(ad.ownerEmail || "");
+      setOwner_email(ad.owner_email || "");
       setCategoryId(ad.category?.id || null);
       setTagsIds(ad.tags.map(tag => tag.id) || []); // Simplification
     }
@@ -92,7 +92,7 @@ export function AdEditorPage() {
           location,
           picture,
           owner,
-          ownerEmail,
+          owner_email,
           category: categoryId ? { id: categoryId } : null,
           tags: tagsIds.map((id) => ({ id })),
         },
@@ -197,8 +197,8 @@ export function AdEditorPage() {
           <input
             className="text-field"
             type="text"
-            value={ownerEmail}
-            onChange={(e) => setOwnerEmail(e.target.value)}
+            value={owner_email}
+            onChange={(e) => setOwner_email(e.target.value)}
           />
         </label>
         <br />

@@ -73,7 +73,7 @@ function AdDetails() {
                     <div className="ad-details-owner">
                         <p>Annonce publiée par {ad.owner || 'Utilisateur inconnu'}</p>
                     </div>
-                    <Link to={`mailto:${ad.ownerEmail || ''}`} className="button  link-button">
+                    <Link to={`mailto:${ad.owner_email || ''}`} className="button  link-button">
                         Envoyer un email
                     </Link>
                     <button onClick={handleDelete} className="button button-primary link-button">

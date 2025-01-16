@@ -19,18 +19,18 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - NODE_ENV=development
+    env_file:
+      - database.env
+      - backend.env
     volumes:
       - ./backend/src:/app/src 
       # - ./backend/database:/app/database plus nécessaire car on ne passe plus par sqlite mais par postgres
-
   db:
     image: postgres
     ports: 
       - "5432:5432"
-    environment:
-      POSTGRES_PASSWORD: mdpsecret
-      POSTGRES_USER: thegoodcorner
-      POSTGRES_DB: thegoodcorner
+    env_file:
+      - database.env
     volumes:
       - dbdata:/var/lib/postgresql/data
 

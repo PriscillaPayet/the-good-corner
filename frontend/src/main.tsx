@@ -1,22 +1,25 @@
-
 import { createRoot } from 'react-dom/client'
 import App from './components/App/App.tsx'
 import { BrowserRouter } from 'react-router-dom'
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 
+// Création du lien HTTP avec credentials
+const httpLink = createHttpLink({
+  uri: '/api', // Changer l'uri pour /api
+  credentials: 'include', // Permet d'envoyer les cookies avec chaque requête
+});
+
+// Création du client Apollo
 const client = new ApolloClient({
-  uri: 'http://localhost:5000/',
-  cache: new InMemoryCache(
-    
-   
-  ),
+  link: httpLink,
+  cache: new InMemoryCache(),
 });
 
 
 createRoot(document.getElementById('root')!).render(
-<ApolloProvider client={client}>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-</ApolloProvider>
-)
+  <ApolloProvider client={client}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ApolloProvider>
+);

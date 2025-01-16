@@ -1,10 +1,11 @@
 import '../../index.css';
 import NavCategory, { CategoryProps } from '../NavCategory/NavCategory';
 import { useEffect, useState } from 'react';
-import { GET_CATEGORIES } from '../../api/graphql_queries'; // Assurez-vous que cette requête existe
-import { useQuery } from '@apollo/client';
+import { GET_CATEGORIES} from '../../api/graphql_queries'; // Assurez-vous que cette requête existe
+import {  useQuery } from '@apollo/client';
 import {  useNavigate } from 'react-router-dom';
 import React from 'react';
+
 
 function Navbar() {
     const [categories, setCategories] = useState<CategoryProps[]>([]);

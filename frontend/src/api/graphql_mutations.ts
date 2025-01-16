@@ -55,3 +55,30 @@ export const CREATE_TAG = gql`
     }
   }
 `
+
+export const CREATE_USER = gql`
+  mutation CreateUser($data: UserCreateInput!) {
+    createUser(data: $data) {
+      id
+      
+   
+     
+    }
+  }
+`
+
+export const SIGNIN = gql`
+  mutation Signin($password: String!, $email: String!) {
+    signin(password: $password, email: $email) {
+      id
+      email
+      roles
+    }
+  }
+`
+
+export const SIGNOUT = gql`
+mutation signout {
+  signout
+}
+`;

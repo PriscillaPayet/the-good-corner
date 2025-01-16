@@ -26,7 +26,7 @@ export class Ad extends BaseEntity {
     @Column()
     @Field()
     @IsEmail({}, { message: 'L\'adresse email fournie est invalide.' })
-    ownerEmail!: string;
+    owner_email!: string;
 
     @Column()
     @Field()
@@ -80,7 +80,7 @@ export class AdCreateInput {
    
     @Field()
     @IsEmail()
-    ownerEmail!: string;
+    owner_email!: string;
 
     @Field()
     owner!: string;
@@ -115,7 +115,7 @@ export class AdUpdateInput {
    
     @Field({nullable: true})
     @IsEmail()
-    ownerEmail!: string;
+    owner_email!: string;
 
     @Field({nullable: true})
     owner!: string;

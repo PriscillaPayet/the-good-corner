@@ -1,4 +1,4 @@
-import { Arg, ID, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Authorized, ID, Mutation, Query, Resolver } from "type-graphql";
 import { In } from "typeorm";
 import { Ad, AdCreateInput, AdUpdateInput } from "../entities/Ad";
 import { Category } from "../entities/Category";
@@ -8,6 +8,7 @@ import { merge } from "../utils/merge";
 
 @Resolver()
 export class AdsResolver {
+   
     @Query(() => [Ad])
     async ads(): Promise<Ad[]> {
         return await Ad.find({ relations: { category: true, tags: true } });
@@ -21,6 +22,7 @@ export class AdsResolver {
         });
     }
 
+   
     @Mutation(() => Ad)
     async createAd(
       @Arg("data", () => AdCreateInput) data: AdCreateInput
